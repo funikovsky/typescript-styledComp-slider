@@ -1,25 +1,35 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
 
-function App() {
+
+
+import styled from 'styled-components';
+import { ArrowLeft } from './components/arrowLeft';
+import { ArrowRight } from './components/arrowRight';
+import { Slider } from './components/slider';
+
+import { StyledSliderContainer } from './components/sliderContainer';
+import { setLeft, useAppDispatch } from './components/store/sliderSlice';
+
+const AppWrapper = styled.div`
+
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  
+`
+
+function App () {
+
+  const dispatch = useAppDispatch()
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    
+    <AppWrapper>
+      <StyledSliderContainer>
+        <ArrowRight onClick={() => dispatch(setLeft('right'))}/>
+        <ArrowLeft onClick={() => dispatch(setLeft('left'))}/>
+        <Slider/>
+      </StyledSliderContainer>
+    </AppWrapper>
+
   );
 }
 
